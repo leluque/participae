@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	background-color: white;
+	height: 100%;
+}
+
+h1 {
+	font-size: 18px;
+}
+
+.logo {
+	text-align: center;
+	margin-bottom: 50px;
+}
+.logo img {
+	width: 300px;
+}
+
+.busca {
+	text-align: center;
+}
+
+.observacoes {
+	font-size: 0.8em;
+}
+
+#accordion {
+	text-align: left !important;
+}
+
+#filtros a {
+	margin-bottom: 1em;	
+}
+
+.excluir {
+	display: none;
+	background-color: #0079FF !important;
+	color: white !important;
+}
+
+.conteiner {
+	display: none;
+}
+
+.container {
+	background-color: white;
+	padding-top: 2em;
+	padding-bottom: 5em;
+}
+
+.info-filtro {
+	display: none;
+}

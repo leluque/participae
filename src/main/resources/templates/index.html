@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}" class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="description" content="Participaê! Transparência Mogi das Cruzes-SP">
+<meta name="author" content="Leandro Luque">
+<meta name="pisoSalario" th:content="${filtros.pisoSalario}">
+<meta name="tetoSalario" th:content="${filtros.tetoSalario}">
+<title>Participaê! Transparência Mogi das Cruzes-SP</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Material Design Icon -->
+<link rel="stylesheet" th:href="@{/assets/fonts/material-design/css/materialdesignicons.css}">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!-- mCustomScrollbar -->
+<link rel="stylesheet" th:href="@{/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css}">
+
+<!-- Waves Effect -->
+<link rel="stylesheet" th:href="@{/assets/plugin/waves/waves.min.css}">
+
+<!-- Sweet Alert -->
+<link rel="stylesheet" th:href="@{/assets/plugin/sweet-alert/sweetalert.css}">
+
+<!-- Jquery UI -->
+<link rel="stylesheet" th:href="@{/assets/plugin/jquery-ui/jquery-ui.min.css}">
+<link rel="stylesheet" th:href="@{/assets/plugin/jquery-ui/jquery-ui.structure.min.css}">
+<link rel="stylesheet" th:href="@{/assets/plugin/jquery-ui/jquery-ui.theme.min.css}">
+
+<!-- noUI SLider -->
+<link rel="stylesheet" th:href="@{/assets/plugin/noUIslider/nouislider.min.css}">
+<link rel="stylesheet" th:href="@{/assets/plugin/noUIslider/nouislider.pips.css}">
+<link rel="stylesheet" th:href="@{/assets/plugin/noUIslider/nouislider.tooltips.css}">
+
+<!-- Ion Range SLider -->
+<link rel="stylesheet" th:href="@{/assets/plugin/ion-range-slider/css/ion.rangeSlider.css}">
+<link rel="stylesheet" th:href="@{/assets/plugin/ion-range-slider/css/ion.rangeSlider.skinFlat.css}">
+
+<!-- Select2 -->
+<link rel="stylesheet" th:href="@{/assets/plugin/select2/css/select2.min.css}">
+
+<!-- Data Tables -->
+<link rel="stylesheet" th:href="@{/assets/plugin/datatables/media/css/dataTables.bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css}">
+
+<!-- Main Styles -->
+<link rel="stylesheet" th:href="@{/assets/styles/style.css}">
+
+<link rel="stylesheet" th:href="@{/assets/styles/index.css}">
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 logo">
+				<img th:src="@{/assets/images/logo-participae.png}" />
+			</div>
+		</div>
+		<form id="form" method="GET" th:action="@{/pesquisar}" th:object="${pesquisa}" autocomplete="off">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8 busca">
+					<h1>Transparência de Mogi das Cruzes-SP</h1>
+					<p>
+						Clique no botão com uma lupa para pesquisar o salário de todos os servidores ou informe um nome/cargo e, em seguida, clique no botão com uma lupa. <br /> <span
+							class="observacoes">Você pode ainda aplicar filtros. Clique sobre os botões 'Data', 'Salário', 'Cargo' ou 'Item' para aplicar filtros.</span>
+					</p>
+					<div class="input-group margin-bottom-20">
+						<input type="text" class="form-control" name="texto" id="texto" placeholder="Pesquisar . . .">
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-primary no-border waves-effect waves-light">
+								<i class="fa fa-search text-white"></i>
+							</button>
+						</div>
+						<!-- /.input-group-btn -->
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div id="filtros">
+						<a id="referencia" href="#" class="btn btn-xs btn-primary"><span id="detalheFiltroReferencia" class="badge info-filtro"></span> Data <span id="excluirFiltroReferencia"
+							class="badge excluir">x</span></a> <a id="faixaSalarial" href="#" class="btn btn-xs btn-primary"><span id="detalheFiltroFaixaSalarial" class="badge info-filtro"></span>
+							Salário <span id="excluirFiltroFaixaSalarial" class="badge excluir">x</span></a> <a id="cargo" href="#" class="btn btn-xs btn-primary"><span id="detalheFiltroCargo"
+							class="badge info-filtro"></span> Cargo <span id="excluirFiltroCargo" class="badge excluir">x</span></a> <a id="itemFolha" href="#" class="btn btn-xs btn-primary"><span
+							id="detalheFiltroItemFolha" class="badge info-filtro"></span> Item <span id="excluirFiltroItemFolha" class="badge excluir">x</span></a>
+						<!-- <a id="agrupamento" href="#" class="btn btn-xs btn-info"><span
+						id="detalheAgrupamento" class="badge info-filtro"></span> Agrupamento <span id="excluirAgrupamento" class="badge excluir">x</span></a> -->
+					</div>
+					<div id="conteinerReferencia" class="conteiner">
+						<div id="accordion" class="js__ui_accordion">
+							<h3 class="accordion-title">Mês de Referência</h3>
+							<div class="accordion-content">
+								<select id="valorReferencia" class="form-control" name="referencia">
+									<option th:each="referencia : ${filtros.referencias}" th:text="${referencia}" th:value="${referencia}"></option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div id="conteinerFaixaSalarial" class="conteiner">
+						<div id="accordion" class="js__ui_accordion">
+							<h3 class="accordion-title">Salário</h3>
+							<div class="accordion-content">
+								<p class="margin-top-20">Selecione a faixa de salário que deseja pesquisar:</p>
+								<input id="valorFaixaSalarial" type="text" name="faixaSalarial" />
+							</div>
+						</div>
+					</div>
+					<div id="conteinerCargo" class="conteiner">
+						<div id="accordion" class="js__ui_accordion">
+							<h3 class="accordion-title">Cargos</h3>
+							<div class="accordion-content">
+								<label for="valorCargo">Selecione um ou mais cargos na lista seguinte:</label> <select id="valorCargo" class="form-control" name="cargos" multiple="multiple">
+									<option th:each="cargo : ${filtros.cargos}" th:text="${cargo.nome}" th:value="${cargo.id}"></option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div id="conteinerItemFolha" class="conteiner">
+						<div id="accordion" class="js__ui_accordion">
+							<h3 class="accordion-title">Item de Folha de Pagamento</h3>
+							<div class="accordion-content">
+								<select id="valorItemFolha" class="form-control" name="valorItemFolha" multiple="multiple">
+									<optgroup label="Recebimentos">
+										<option th:each="rendimento : ${filtros.tiposRendimentos}" th:text="${rendimento.nome}" th:value="${rendimento.id}"></option>
+									</optgroup>
+									<optgroup label="Descontos">
+										<option th:each="desconto : ${filtros.tiposDescontos}" th:text="${desconto.nome}" th:value="${desconto.id}"></option>
+									</optgroup>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<h1>Pesquisas prontas</h1>
+					<a th:href="@{/pesquisar?texto=&referencia=Fev%2F2018&faixaSalarial=&cargos=28281}" class="btn btn-xs btn-success" style="margin: 0.5em">Quanto o prefeito recebe?</a>
+					<a th:href="@{/pesquisar?texto=&referencia=Fev%2F2018&faixaSalarial=&cargos=5829}" class="btn btn-xs btn-success" style="margin: 0.5em">Quanto os secretários municipais recebem?</a>
+					<a th:href="@{/pesquisar?texto=&referencia=Fev%2F2018&condicao=470>35}" class="btn btn-xs btn-success" style="margin: 0.5em">Quais funcionários recebem BONIFICAÇÃO<br /> maior que o VENCIMENTO BÁSICO?</a>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</form>
+	</div>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script th:src="@{/assets/script/html5shiv.min.js}"></script>
+		<script th:src="@{/assets/script/respond.min.js}"></script>
+	<![endif]-->
+	<!-- 
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script th:src="@{/assets/scripts/modernizr.min.js}"></script>
+	<script th:src="@{/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{/assets/plugin/nprogress/nprogress.js}"></script>
+	<script th:src="@{/assets/plugin/sweet-alert/sweetalert.min.js}"></script>
+	<script th:src="@{/assets/plugin/waves/waves.min.js}"></script>
+
+	<!-- Jquery UI -->
+	<script th:src="@{/assets/plugin/jquery-ui/jquery-ui.min.js}"></script>
+	<script th:src="@{/assets/plugin/jquery-ui/jquery.ui.touch-punch.min.js}"></script>
+
+	<!-- Ion Ranger SLider -->
+	<script th:src="@{/assets/plugin/ion-range-slider/js/ion.rangeSlider.min.js}"></script>
+
+	<!-- Select2 -->
+	<script th:src="@{/assets/plugin/select2/js/select2.min.js}"></script>
+
+	<!-- Multi Select -->
+	<!-- <script th:src="@{/assets/plugin/multiselect/multiselect.min.js}"></script> -->
+
+	<!-- Datepicker -->
+	<script th:src="@{/assets/plugin/datepicker/js/bootstrap-datepicker.min.js}"></script>
+
+	<script th:src="@{/assets/scripts/main.min.js}"></script>
+
+	<script th:src="@{/assets/scripts/index.js}"></script>
+
+</body>
+</html>

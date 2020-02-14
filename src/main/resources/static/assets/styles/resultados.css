@@ -1,0 +1,130 @@
+@charset "ISO-8859-1";
+/* Center the loader */
+#loader {
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	margin-left: 115px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+
+#loaderContainer {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 350px;
+	height: 350px;
+	text-align: center;
+	margin: -175px 0 0 -175px;
+}
+
+#loaderContainer h1 {
+	margin-top: 1.5em;
+}
+
+#loaderContainer p {
+	font-size: 0.9em;
+}
+
+@
+-webkit-keyframes spin { 0% {
+	-webkit-transform: rotate(0deg);
+}
+
+100%
+{
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+}
+}
+@
+keyframes spin { 0% {
+	transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);
+ 
+}
+}
+
+/* Add animation to "page content" */
+/*.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}*/
+#conteiner-resultado {
+	display: none;
+	margin-top: 0px;
+}
+
+.counter {
+	font-size: 2em ! important;
+}
+
+.legendaGrafico {
+	font-size: 0.75em;
+}
+
+td.details-control {
+	background: url('../images/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+
+tr.details td.details-control {
+	background: url('../images/details_close.png') no-repeat center center;
+}
+
+.outras_estatisticas {
+	text-align: center;
+}
+
+.outras_estatisticas p {
+	margin: 0;
+	padding: 0;
+}
+
+@media ( max-width : 768px) {
+	.col-xs-12.text-left {
+		text-align: center;
+	}
+}
+
+/* Datatable pagination for small devices. */
+@media screen and (max-width: 767px) {
+	li.paginate_button.previous {
+		display: inline;
+	}
+	li.paginate_button.next {
+		display: inline;
+	}
+	li.paginate_button {
+		display: none;
+	}
+}
